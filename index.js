@@ -28,12 +28,13 @@ Replace.prototype.apply = function (compiler) {
   var output = path.join(folder, self.output);
 
   fs.readFile(entry, 'utf8', function (err, data) {
+    val udpdated = data;
     if (!self.skip) {
       var matches = regexMatchAll(data, regex);
       matches.forEach(function (match) {
         var str = match[0];
         var key = match[4];
-        data = data.replace(str, '\n' + self.data[key] + '\n');
+        updated = data.replace(str, '\n' + self.data[key] + '\n');
       });
     }
 
@@ -41,9 +42,9 @@ Replace.prototype.apply = function (compiler) {
       if (self.hash) {
         var reg = new RegExp('\\' + self.hash, 'g');
         var changeWith = typeof self.hashValue === 'string' ? self.hashValue : stats.hash;
-        data = data.replace(reg, changeWith);
+        updated = data.replace(reg, changeWith);
       }
-      fs.writeFileSync(output, data);
+      fs.writeFileSync(output, updated);
     });
   });
 };
