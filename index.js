@@ -28,7 +28,7 @@ Replace.prototype.apply = function (compiler) {
   var output = path.join(folder, self.output);
 
   fs.readFile(entry, 'utf8', function (err, data) {
-    val updated = data;
+    var updated = data;
     if (!self.skip) {
       var matches = regexMatchAll(data, regex);
       matches.forEach(function (match) {
